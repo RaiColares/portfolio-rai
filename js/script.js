@@ -45,12 +45,3 @@ window.onscroll = () => {
     navegacao.classList.remove('active');
 };
 
-
- /*====================== Typed js ===================*/
-const typed = new Typed('.multiplo-texto', {
-    strings: ["Sou Aspirante a Dev da Alpha EdTech", "Crie sua presença online comigo!", "Sites modernos, bonitos e responsivos"],
-    typeSpeed: 80,
-    backSpeed: 40,
-    backDelay: 1000,
-    loop: true
-});
