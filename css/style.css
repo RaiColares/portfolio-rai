@@ -29,6 +29,7 @@ html {
 body{
     background: var(--bg-color);
     color: var(--text-color);
+    overflow-x: hidden;
 }
 
 section{
@@ -173,22 +174,6 @@ section{
     animation-delay: 2s, 3s;
 
 }
-
-
-@keyframes floatImage {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-2.4rem);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-    
-} 
 
 
 .home-content{
@@ -683,7 +668,7 @@ min-height: 80vh;
     }
 }
 
-/* @keyframes floatImage {
+@keyframes floatImage {
     0% {
         transform: translateY(0);
     }
@@ -693,7 +678,7 @@ min-height: 80vh;
     100% {
         transform: translateY(0);
     }
-} */
+}
 
 
 /* ======breakpoints=========*/
@@ -779,9 +764,9 @@ section {
     }
 
     .home-img img {
-        width: 100vw;
+        width: 100%;
         margin-top: 4rem;
-        
+        margin-right: 0;
     }
 
     .botoes-home {
@@ -842,6 +827,28 @@ section {
         text-align: center;
     }
 
+}
+
+@media (max-width: 400px) {
+    section {
+        padding: 8rem 2% 2rem;
+    }
+
+    .header {
+        padding: 2rem 2%;
+    }
+
+    .footer {
+        padding: 2rem 2%;
+    }
+
+    .home-content h1 {
+        font-size: 4rem;
+    }
+
+    .sobre-img img {
+        width: 80vw;
+    }
 }
 
 @media (max-width: 365px) {
