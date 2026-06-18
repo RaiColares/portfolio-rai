@@ -45,3 +45,28 @@ window.onscroll = () => {
     navegacao.classList.remove('active');
 };
 
+/* ====ANIMAÇÕES SCROLL==== */
+
+const reveals = document.querySelectorAll(
+    '.reveal-up, .reveal-left, .reveal-right, .reveal-bottom'
+);
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        } else {
+            entry.target.classList.remove('active');
+        }
+
+    });
+
+}, {
+    threshold: 0.15
+});
+
+reveals.forEach(item => {
+    observer.observe(item);
+});
