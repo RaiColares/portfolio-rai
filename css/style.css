@@ -501,6 +501,141 @@ span{
     color: var(--second-color);
 }
 
+/*---------- benefício de um site----------- */
+
+
+.beneficios {
+    background: var(--bg-color); /* Fundo escuro oficial */
+    padding: 10rem 7%;
+}
+
+.beneficios h2 {
+    margin-bottom: 4rem;
+}
+
+.beneficios-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas */
+    gap: 2.5rem;
+}
+
+
+.beneficio-box {
+    background: var(--second-color); /* Cinza azulado da seção de serviços */
+    padding: 3rem 2rem;
+    border-radius: 2rem;
+    text-align: center;
+    border: .2rem solid transparent;
+    transition: .5s ease;
+}
+
+/* Efeito de hover seguindo o padrão dos seus serviços */
+.beneficio-box:hover {
+    border-color: var(--main-color);
+    transform: scale(1.02);
+}
+
+.beneficio-box i {
+    font-size: 5rem;
+    color: var(--main-color); /* Verde neon oficial */
+    margin-bottom: 1.5rem;
+}
+
+.beneficio-box h3 {
+    font-size: 2.2rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.beneficio-box p {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    line-height: 1.6;
+    opacity: 0.8; /* Deixa o texto levemente mais suave, padrão moderno */
+}
+
+/* Responsividade para manter o layout bonito em qualquer tela */
+@media (max-width: 1200px) {
+    .beneficios-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .beneficios-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------------- FAQ ----------------- */
+.faq {
+    background: var(--second-color);
+    padding: 10rem 7%;
+}
+
+.faq h2{
+   margin-bottom: 5rem;
+    text-align: center; 
+}
+
+.faq-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.faq-item {
+    background: var(--bg-color);
+    padding: 1.5rem 2rem;
+    border-radius: .8rem;
+    border: .2rem solid transparent;
+    transition: .5s ease;
+    cursor: pointer;
+}
+
+.faq-item.active {
+    border-color: var(--main-color);
+}
+
+.faq-pergunta {
+    font-size: 1.8rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-pergunta i {
+    font-size: 2.5rem;
+    color: var(--main-color);
+    transition: transform .3s ease;
+}
+
+.faq-item.active .faq-pergunta i {
+    transform: rotate(45deg);
+}
+
+.faq-resposta {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease;
+}
+
+.faq-item.active .faq-resposta {
+    max-height: 400px;
+}
+
+.faq-resposta p {
+    font-size: 1.6rem;
+    margin-top: 1.5rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    border-top: .1rem solid var(--second-color);
+    padding-top: 1rem;
+}
+/*------------- FIM FAQ ------------ */
 
 
 

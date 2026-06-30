@@ -70,3 +70,20 @@ const observer = new IntersectionObserver((entries) => {
 reveals.forEach(item => {
     observer.observe(item);
 });
+
+ /*====================== Typed js ===================*/
+const typed = new Typed('.multiplo-texto', {
+    strings: ["Sou Aspirante a Dev da Alpha EdTech", "Crie sua presença online comigo!", "Sites modernos, bonitos e responsivos"],
+    typeSpeed: 80,
+    backSpeed: 40,
+    backDelay: 1000,
+    loop: true
+});
+
+/*====================== FAQ Accordion ===================*/
+document.querySelectorAll('.faq-pergunta').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        item.classList.toggle('active');
+    });
+});
