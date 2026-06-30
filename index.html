@@ -1,196 +1,525 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html class="scroll-smooth" lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="./assets/imagens/logo.png" type="image/x-icon" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Instituto Mãe Crioula | Pesquisa e Impacto na Amazônia</title>
     
-    <title>Portfólio | Rai Colares</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-<!--box icons-->
+        .header-scrolled {
+            background-color: rgba(2, 54, 37, 0.95) !important;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
 
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        @keyframes scroll-indicator {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(12px); opacity: 0; }
+        }
+        .animate-scroll { animation: scroll-indicator 2s infinite; }
 
-<!--custom css-->
-   
-    <link rel="stylesheet" href="./css/style.css">
-  
+        .theme-green-bg { background-color: #1f4d3a; }
+        .theme-orange { color: #ffaa1a; }
+        .theme-orange-bg { background-color: #ffaa1a; }
+        .theme-orange-btn:hover { background-color: #ffb958; }
+        
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+    </style>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#1f4d3a",
+                        "on-primary": "#ffffff",
+                        "secondary": "#845400",
+                        "secondary-container": "#ffaa1a",
+                        "on-secondary-container": "#2a1800",
+                        "background": "#f9faf6",
+                        "surface": "#f9faf6",
+                        "surface-container": "#edeeeb",
+                        "surface-container-low": "#f3f4f0",
+                        "outline": "#717973",
+                        "outline-variant": "#c0c9c2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "gutter": "32px"
+                    },
+                    "fontFamily": {
+                        "body": ["Inter", "sans-serif"],
+                        "headline": ["Playfair Display", "serif"],
+                        "display": ["Playfair Display", "serif"]
+                    }
+                }
+            }
+        }
+    </script>
 </head>
+<body class="bg-background text-on-surface font-body overflow-x-hidden">
 
-<body>
-
-   <!-- ===== HEADER (cabeçalho do site) ===== -->    
-<header class="header">
-     
-    <a href="#" class="logo">Portfólio</a>
-    
-
-    <i class='bx bx-menu' id="menu-icon"></i>
-    
-    <nav class="navegacao">
-        <a href="#home" style="--i:1;" class="active">Home</a>
-        <a href="#sobre"  style="--i:2;">Sobre</a>
-        <a href="#portfolio"  style="--i:4;">Portfólio</a>
-        <a href="#contato"  style="--i:5;">Contato</a>
-    </nav>
-</header>
-
-<!-- ===== SEÇÃO HOME ===== -->
-<section class="home" id="home">
-    <div class="home-content">
-        <h3>Olá, me chamo</h3>
-        <h1>Rai Colares</h1>
-        <h3>Sou Aspirante a Dev da <span>Alpha EdTech</span></h3>
-        <h3>Transformando ideias em realidade digital.</h3>
-        <div class="redes-sociais">
-            <!-- <a href="#" style="--i:7;"><i class='bx bxl-facebook'></i></box-icon></a> -->
-             <a href="https://www.linkedin.com/in/raimundo-colares/" target="_blank" rel="noopener noreferrer" style="--i:9;">
-        <i class='bx bxl-linkedin'></i></a>
-            <a href="https://github.com/RaiColares" target="_blank" rel="noopener noreferrer">
-    <i class='bx bxl-github'></i>
-</a>
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-transparent" id="main-header">
+        <div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+            <div class="font-headline text-2xl font-bold text-on-primary flex items-center gap-2">
+                <span class="material-symbols-outlined text-3xl">nature_people</span>
+                <span>Instituto Mãe Crioula</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-on-primary/90 hover:text-on-primary transition-colors font-medium text-sm tracking-widest uppercase" href="#">HOME</a>
+                <a class="text-on-primary/90 hover:text-on-primary transition-colors font-medium text-sm tracking-widest uppercase" href="#">SOBRE</a>
+                <a class="text-on-primary/90 hover:text-on-primary transition-colors font-medium text-sm tracking-widest uppercase" href="#">PROJETOS</a>
+                <a class="text-on-primary/90 hover:text-on-primary transition-colors font-medium text-sm tracking-widest uppercase" href="#">PUBLICAÇÕES</a>
+                <a class="text-on-primary/90 hover:text-on-primary transition-colors font-medium text-sm tracking-widest uppercase" href="#">TEMAS</a>
+                <a class="text-on-primary/90 hover:text-on-primary transition-colors font-medium text-sm tracking-widest uppercase" href="#">NA MÍDIA</a>
+            </nav>
+            <div class="flex items-center gap-4 text-on-primary">
+                <span class="material-symbols-outlined cursor-pointer hover:text-secondary-container transition-all">search</span>
+                <span class="material-symbols-outlined cursor-pointer hover:text-secondary-container transition-all">language</span>
+            </div>
         </div>
+    </header>
 
-        <div class="botoes-home">
-            <a href="https://wa.me/5591987127428?text=Olá!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20solicitar%20um%20orçamento%20para%20criação%20de%20site." target="_blank" class="botao-primario">Solicitar orçamento</a>
-            <a href="#portfolio" class="botao-secundario">Ver projetos</a>
+    <!-- 1. Hero Section -->
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="w-full h-full bg-cover bg-center bg-no-repeat transition-transform duration-[10000ms] scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHVqILgjaYShD80y-WM6rYqRuPeD0B8Uyu3XMeJIGdgxelYv5ttgqWDvyVgdldTANuAAH4yH0tfNQ8HtR1KRT_Ks5frKeGKyq7gtjmw9zX4fcjP_llWIV7sIb2A8po_IKmThI1E0znHsGizNUiAmil_R8Q8lsQIf2xOJ1eluhwtcBl1J8d-CZVM7wywAM_njlZQzbYsCMIzXTD_hLMtqWRBc0onYvCRE1mIp20RiMO6L95zfJHp3GRki367oKcEhRgwThFqMPJI7o9')"></div>
+            <div class="absolute inset-0 bg-black/40"></div>
         </div>
-    </div>
-
-    <div class="home-img">
-        <img src="./assets/imagens/rai-home.png" alt="minha imagem">
-    </div>    
-</section>
-
-<!-- ===== SEÇÃO SOBRE ===== -->
-<section class="sobre" id="sobre">
-    <div class="sobre-img reveal-left">
-        <img src="./assets/imagens/rai-sobre.png" alt="minha imagem">
-    </div>
-
-    <div class="sobre-content reveal-right">
-        <h2 class="heading">Sobre <span>Mim</span></h2>
-        <!-- <h3>Aspirante a Dev</h3> -->
-            <P>   
-                Minha trajetória no digital começou com o WordPress, onde entreguei soluções reais para empresas, ONGs e profissionais autônomos. 
-                Hoje, sigo em evolução como aspirante a Desenvolvedor Web na Alpha EdTech, mergulhando a fundo no desenvolvimento com HTML5, CSS3 e JavaScript puro.
-                Estou transicionando do "clicar e arrastar" para a escrita de código limpo e autoral.
-                Meu foco é transformar a experiência que adquiri com clientes reais em interfaces de alta performance, acessíveis e inteligentes.<br>
-                Atualmente, divido meu tempo entre projetos para clientes e o domínio das tecnologias que sustentam a web moderna.
+        <div class="relative z-10 text-center px-margin-mobile md:px-0 max-w-5xl">
+            <h1 class="font-display text-4xl md:text-6xl text-white mb-8 leading-tight reveal active">
+                Produzindo conhecimento em defesa dos povos e comunidades da Amazônia
+            </h1>
+            <p class="font-body text-lg md:text-xl text-white/90 mb-12 max-w-2xl mx-auto reveal active" style="transition-delay: 200ms">
+                Pesquisa, incidência política e ação comunitária a partir do Pará, fortalecendo territórios, direitos e modos de vida na Amazônia.
             </p>
-
-        <!-- <a href="#" class="botao">Leia mais</a> -->
-    </div>
-</section>
-
-
-
-<!-- ===== SEÇÃO PORTFÓLIO ===== -->
-<section class="portfolio" id="portfolio">
-    <h2 class="heading">Últimos <span>Projetos</span></h2>
-    <div class="portfolio-container">
-        <div class="portfolio-box reveal-up">
-            <img src="./assets/imagens/1.jpg" alt="Site Instituto Mãe Crioula">
-            <div class="portfolio-layer">
-                <h4>Instituto Mãe Crioula</h4>
-                <p></p>
-                <a href="https://institutomaecrioula.org/" target="_blank"><i class='bx bx-link-external'></i></a>
+            <div class="reveal active" style="transition-delay: 400ms">
+                <button class="bg-secondary-container text-on-secondary-container px-10 py-4 font-bold text-sm tracking-widest uppercase hover:bg-orange-400 transition-all shadow-xl rounded">
+                    CONHEÇA NOSSOS PROJETOS
+                </button>
             </div>
         </div>
+    </section>
 
-        <div class="portfolio-box reveal-up">
-            <img src="./assets/imagens/2.jpg" alt="Site Instituto HAFAMA">
-            <div class="portfolio-layer">
-                <h4>Instituto HAFAMA</h4>
-                <p></p>
-                <a href="https://institutohafama.org/" target="_blank"><i class='bx bx-link-external'></i></a>
+    <!-- 2. Themes Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-container-max mx-auto px-margin-desktop text-center">
+            <p class="text-on-surface-variant text-sm mb-16 max-w-3xl mx-auto reveal">
+                Nossas ações e pesquisas se concentram em temas centrais para a promoção da justiça social, racial, ambiental e territorial.
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-8 reveal">
+                <div class="flex flex-col items-center group">
+                    <div class="w-16 h-16 mb-4 flex items-center justify-center border border-primary/20 rounded-full group-hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-primary text-3xl">security</span>
+                    </div>
+                    <span class="text-xs font-bold text-primary uppercase">Segurança Pública</span>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <div class="w-16 h-16 mb-4 flex items-center justify-center border border-primary/20 rounded-full group-hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-primary text-3xl">eco</span>
+                    </div>
+                    <span class="text-xs font-bold text-primary uppercase">Segurança Climática</span>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <div class="w-16 h-16 mb-4 flex items-center justify-center border border-primary/20 rounded-full group-hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-primary text-3xl">groups</span>
+                    </div>
+                    <span class="text-xs font-bold text-primary uppercase">Direitos Humanos</span>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <div class="w-16 h-16 mb-4 flex items-center justify-center border border-primary/20 rounded-full group-hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-primary text-3xl">balance</span>
+                    </div>
+                    <span class="text-xs font-bold text-primary uppercase">Justiça Racial e de Gênero</span>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <div class="w-16 h-16 mb-4 flex items-center justify-center border border-primary/20 rounded-full group-hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-primary text-3xl">psychology_alt</span>
+                    </div>
+                    <span class="text-xs font-bold text-primary uppercase">Sustentabilidade</span>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <div class="w-16 h-16 mb-4 flex items-center justify-center border border-primary/20 rounded-full group-hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-primary text-3xl">museum</span>
+                    </div>
+                    <span class="text-xs font-bold text-primary uppercase">Educação, Cultura e Diversidades</span>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="portfolio-box reveal-up">
-            <img src="./assets/imagens/3.jpg" alt="Site Nutri Ailana">
-            <div class="portfolio-layer">
-                <h4>Nutri Ailana</h4>
-                <p></p>
-                <a href="https://nutriailanacouto.com.br/" target="_blank"><i class='bx bx-link-external'></i></a>
+    <!-- 3. About Section -->
+    <section class="py-32 bg-surface-container-low">
+        <div class="max-w-container-max mx-auto px-margin-desktop">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+                <!-- Left: Image Cluster -->
+                <div class="grid grid-cols-2 gap-4 reveal">
+                    <div class="space-y-4">
+                        <img alt="Comunidade" class="w-full h-64 object-cover rounded shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh_zmRA0mCJ9qBcSqT84LxGa9S6UN6DXTDAx1QFR2dHiZeNpqvMLmbBGY_6uHTiW6noqTowEEuYa8IXy_PM9ROg1d64SLsBe-x2CrnYZ4vweHwd0lcpIWXX_hJcbmLeUy6mqm0QBNg0bRwekyH0sjgZeCzKDXdq3P9FUiIqm6iGMCfe59oE2dyU4ILzjtrEup1FwNPXxrDqlJy0twvzNobV3DE5NvQYslbjkOtblmEbGoqiegAtXDr8TyPsCj9Sr7tv5ad6oEBGtN2"/>
+                        <img alt="Atividade" class="w-full h-40 object-cover rounded shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHqA2av4GSNm1f4e_vH_d6j-FZdSCityJITj8_LY2cI62RZIqE30bgyX_FHgmWgPaEatXcTI-Ev5igwvXorIkG0l6mZFHVVbcbewHmBYXwiBgnAgW08uRG9RpeWnVAeVbziXVVfqBNCBllYloYji5XRnT0YkrlD5CnSPP2TKG0zBSs4N-7j6GgDDoPh46sTgjQMBjDiQab_VOiAcllDpJ0XxlmWJTer467cYQdcfO2c59t1iMZPtu3mYcF5D92pygrPMzStapXWUU3"/>
+                    </div>
+                    <div class="space-y-4 pt-12">
+                        <img alt="Povos Tradicionais" class="w-full h-48 object-cover rounded shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9nRlez49h2fyH8oKYg3lZV5Ndo8EgpKRDVBw9g3JRX7j4MZEdRTgC5mM86Ne4IylLq0t8vm7z1gbF6B_OWuU8vbTEOAKWUJXwn4u1WLCmEIE1hBzO4NZK7LMYMkUe4gK4svtRE4J-3fj1IovOFUEd7qz3wERtoa3UETtcD0WPe1HXmhlbXLTzbfZ7G8NbZsxA2082c6vzYNK8aXUv7nD52yl4vClS__8iKm4yqjL01p86xsqVOCKn5vD8FtaRgYcDaZCB6aPvW2fJ"/>
+                        <div class="bg-primary p-6 text-white rounded shadow-lg">
+                            <p class="text-xs font-bold uppercase mb-2">Junte-se a nossa comunidade</p>
+                            <div class="flex -space-x-2">
+                                <div class="w-8 h-8 rounded-full bg-gray-300 border-2 border-primary"></div>
+                                <div class="w-8 h-8 rounded-full bg-gray-400 border-2 border-primary"></div>
+                                <div class="w-8 h-8 rounded-full bg-gray-500 border-2 border-primary"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right: Content -->
+                <div class="reveal" style="transition-delay: 200ms">
+                    <span class="text-primary font-bold text-xs uppercase tracking-widest mb-4 block">SOBRE NÓS</span>
+                    <h2 class="font-headline text-4xl text-primary mb-8 leading-tight">Queremos você ao nosso lado nesta jornada.</h2>
+                    <p class="text-on-surface-variant leading-relaxed mb-8">
+                        Fazendo a diferença na comunidade através de nossos serviços dedicados à cultura, educação, ciência, justiça racial, sustentabilidade ambiental e direitos humanos na Amazônia. Junte-se a nós enquanto trabalhamos para construir um futuro mais justo, inclusivo e sustentável para todos.
+                    </p>
+                    <div class="flex items-center gap-4 mb-8">
+                        <img alt="Diretora" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV0fTx8AOWHyybs5dgTP922cQwYSX244fV00G2W-GDHYWsxUn7oTS5uryxJhymkYxNa97FxqDLZBwmocrcqHWIDolHODGxIzIFWCWvk0kHkqDHK1QhmcyNYZ934iuPMj_m0qZ-OltEOJyAunJNFsBzh_Ww9kZ0U4UCM1S7sDtIX4f2sNpnrOz3I5UvXqfJG1k48py0RiC1leo3lR-NP-xf-NhARlsBjb-niP2P6bLvaSyMRKvOsca1cmwm1eAs_NSNj9OYilrZ8I19"/>
+                        <div>
+                            <p class="font-bold text-primary text-sm">Aiala Couto</p>
+                            <p class="text-xs text-on-surface-variant">Diretor Presidente</p>
+                        </div>
+                    </div>
+                    <div class="bg-primary/5 border-l-4 border-primary p-6 rounded">
+                        <div class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-primary">event_available</span>
+                            <div>
+                                <p class="font-bold text-primary text-sm uppercase mb-1">EVENTOS E ATIVIDADES</p>
+                                <p class="text-sm text-on-surface-variant">Participe de eventos, rodas de conversa e atividades que promovem reflexão, formação e ação nos territórios amazônicos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="portfolio-box reveal-up">
-            <img src="./assets/imagens/4.jpg" alt="Landingpage">
-            <div class="portfolio-layer">
-                <h4>MilleUno</h4>
-                <p></p>
-                <a href="https://milleunoimoveis.com.br/" target="_blank"><i class='bx bx-link-external'></i></a>
+    <!-- 4. Projects Catalog -->
+    <section class="py-32 bg-white">
+        <div class="max-w-container-max mx-auto px-margin-desktop">
+            <div class="text-center mb-20 reveal">
+                <span class="text-primary font-bold text-xs uppercase tracking-widest mb-4 block">CONHECIMENTO EM AÇÃO</span>
+                <h2 class="font-headline text-4xl text-primary mb-4">Conheça Nossos Projetos</h2>
+                <p class="text-on-surface-variant">Projetos que unem pesquisa, ação e compromisso com os territórios.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+                <!-- Project 1 -->
+                <div class="group bg-surface-container-low rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-500">
+                    <div class="relative h-[400px]">
+                        <img alt="Projeto" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9nRlez49h2fyH8oKYg3lZV5Ndo8EgpKRDVBw9g3JRX7j4MZEdRTgC5mM86Ne4IylLq0t8vm7z1gbF6B_OWuU8vbTEOAKWUJXwn4u1WLCmEIE1hBzO4NZK7LMYMkUe4gK4svtRE4J-3fj1IovOFUEd7qz3wERtoa3UETtcD0WPe1HXmhlbXLTzbfZ7G8NbZsxA2082c6vzYNK8aXUv7nD52yl4vClS__8iKm4yqjL01p86xsqVOCKn5vD8FtaRgYcDaZCB6aPvW2fJ"/>
+                        <div class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded">EM ANDAMENTO</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-headline text-xl text-primary mb-4">Vozes da Floresta: Governança Feminina</h3>
+                        <p class="text-sm text-on-surface-variant mb-6 line-clamp-3">Fortalecimento institucional de 15 coletivos de mulheres quilombolas e indígenas no Médio Amazonas.</p>
+                        <a class="text-xs font-bold text-primary flex items-center gap-2 hover:gap-3 transition-all" href="#">LEIA MAIS <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="group bg-surface-container-low rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-500" style="transition-delay: 100ms">
+                    <div class="relative h-[400px]">
+                        <img alt="Projeto" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHqA2av4GSNm1f4e_vH_d6j-FZdSCityJITj8_LY2cI62RZIqE30bgyX_FHgmWgPaEatXcTI-Ev5igwvXorIkG0l6mZFHVVbcbewHmBYXwiBgnAgW08uRG9RpeWnVAeVbziXVVfqBNCBllYloYji5XRnT0YkrlD5CnSPP2TKG0zBSs4N-7j6GgDDoPh46sTgjQMBjDiQab_VOiAcllDpJ0XxlmWJTer467cYQdcfO2c59t1iMZPtu3mYcF5D92pygrPMzStapXWUU3"/>
+                        <div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container text-[10px] font-bold px-3 py-1 rounded">NOVO</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-headline text-xl text-primary mb-4">Observatório de Segurança Climática</h3>
+                        <p class="text-sm text-on-surface-variant mb-6 line-clamp-3">Monitoramento de dados sobre eventos extremos e impacto em comunidades ribeirinhas.</p>
+                        <a class="text-xs font-bold text-primary flex items-center gap-2 hover:gap-3 transition-all" href="#">LEIA MAIS <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="group bg-surface-container-low rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-500" style="transition-delay: 200ms">
+                    <div class="relative h-[400px]">
+                        <img alt="Projeto" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh_zmRA0mCJ9qBcSqT84LxGa9S6UN6DXTDAx1QFR2dHiZeNpqvMLmbBGY_6uHTiW6noqTowEEuYa8IXy_PM9ROg1d64SLsBe-x2CrnYZ4vweHwd0lcpIWXX_hJcbmLeUy6mqm0QBNg0bRwekyH0sjgZeCzKDXdq3P9FUiIqm6iGMCfe59oE2dyU4ILzjtrEup1FwNPXxrDqlJy0twvzNobV3DE5NvQYslbjkOtblmEbGoqiegAtXDr8TyPsCj9Sr7tv5ad6oEBGtN2"/>
+                        <div class="absolute top-4 left-4 bg-outline text-white text-[10px] font-bold px-3 py-1 rounded">CONCLUÍDO</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-headline text-xl text-primary mb-4">Bioeconomia Ancestral: Cadeias Produtivas</h3>
+                        <p class="text-sm text-on-surface-variant mb-6 line-clamp-3">Estudo sobre o impacto econômico da exploração sustentável de produtos locais.</p>
+                        <a class="text-xs font-bold text-primary flex items-center gap-2 hover:gap-3 transition-all" href="#">LEIA MAIS <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-16 reveal">
+                <button class="border-2 border-primary text-primary px-8 py-3 font-bold text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all rounded">
+                    VER TODOS OS PROJETOS
+                </button>
             </div>
         </div>
+    </section>
 
-        <div class="portfolio-box reveal-up">
-            <img src="./assets/imagens/5.jpg" alt="Site Construtora Aurora">
-            <div class="portfolio-layer">
-                <h4>Construtora Aurora</h4>
-                <p></p>
-                <a href="https://construtora.criandoseusite.com.br/projetos/" target="_blank"><i class='bx bx-link-external'></i></a>
+    <!-- 5. Events Timeline -->
+    <section class="py-32 bg-surface-container-low">
+        <div class="max-w-4xl mx-auto px-margin-mobile">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-headline text-3xl text-primary mb-4">Participe Dos Nossos Eventos</h2>
+                <p class="text-on-surface-variant text-sm">Realizamos eventos formativos e atividades abertas que estimulam a transformação social.</p>
+            </div>
+            <div class="space-y-6 reveal">
+                <!-- Event 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-outline-variant hover:shadow-md transition-all flex gap-6">
+                    <div class="w-24 h-24 shrink-0 bg-primary/10 rounded flex flex-col items-center justify-center text-primary">
+                        <span class="text-2xl font-bold">06</span>
+                        <span class="text-[10px] font-bold uppercase">NOV</span>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="font-bold text-primary mb-2">Instituto Mãe Crioula e sua participação na COP 30</h4>
+                        <p class="text-sm text-on-surface-variant line-clamp-2">A participação do Instituto em Belém, representa um marco fundamental na afirmação das vozes amazônicas.</p>
+                        <div class="mt-4 flex items-center gap-4 text-[10px] font-bold text-on-surface-variant uppercase">
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">location_on</span> Auditório do CCINT</span>
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">schedule</span> 14H</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Event 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-outline-variant hover:shadow-md transition-all flex gap-6">
+                    <div class="w-24 h-24 shrink-0 bg-primary/10 rounded flex flex-col items-center justify-center text-primary">
+                        <span class="text-2xl font-bold">05</span>
+                        <span class="text-[10px] font-bold uppercase">JUN</span>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="font-bold text-primary mb-2">Roda de conversa formativa: Segurança Pública</h4>
+                        <p class="text-sm text-on-surface-variant line-clamp-2">Estratégias de enfrentamento à violência doméstica e lançamento da cartilha informativa.</p>
+                        <div class="mt-4 flex items-center gap-4 text-[10px] font-bold text-on-surface-variant uppercase">
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">location_on</span> Biblioteca da Fundação Cultural</span>
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">schedule</span> 09H</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Event 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-outline-variant hover:shadow-md transition-all flex gap-6">
+                    <div class="w-24 h-24 shrink-0 bg-primary/10 rounded flex flex-col items-center justify-center text-primary">
+                        <span class="text-2xl font-bold">18</span>
+                        <span class="text-[10px] font-bold uppercase">NOV</span>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="font-bold text-primary mb-2">VI SEMINÁRIO - VIVA PALMARES</h4>
+                        <p class="text-sm text-on-surface-variant line-clamp-2">Direitos Humanos e Justiça Racial na Amazônia: Desafios e Perspectivas para 2025.</p>
+                        <div class="mt-4 flex items-center gap-4 text-[10px] font-bold text-on-surface-variant uppercase">
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">location_on</span> Sala de Recitais - CCSE/UEPA</span>
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">schedule</span> 18H</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="portfolio-box reveal-up">
-            <img src="./assets/imagens/6.jpg" alt="Site Adv Aurora">
-            <div class="portfolio-layer">
-                <h4>Adv Aurora</h4>
-                <p></p>
-                <a href="https://adv.criandoseusite.com.br/" target="_blank"><i class='bx bx-link-external'></i></a>
+    <!-- 6. Publications Section -->
+    <section class="py-32 theme-green-bg text-white">
+        <div class="max-w-container-max mx-auto px-margin-desktop">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-headline text-4xl mb-4">Nossas Publicações</h2>
+                <p class="text-white/70 text-sm max-w-2xl mx-auto">Reunimos publicações que sistematizam pesquisas, estudos e reflexões produzidas pelo Instituto, contribuindo para o debate público.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 reveal">
+                <!-- Pub 1 -->
+                <div class="bg-white/10 p-1 group hover:bg-white/20 transition-all rounded">
+                    <div class="bg-white/5 aspect-[3/4] p-8 flex flex-col justify-end relative overflow-hidden">
+                        <img alt="Capa" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMEGMSX2_s2bqxBpwYMXAGvLYxzpp84MVQOuWapb-3hIYJ8gfdg-T8AjC5x1NHeC1GNMoOny3ZWTldMn-Txvyypp7vkbgqplcu-oiKCN2zWN3qbh1z1wGwRRqMdhZVKfwZ9T2WK6UUhGlegT0gIu8GIb5YKxrbUBGuRUhPPHbaT3a6EpNGYGJ1PG_ElTKPMBQd5p2OWBseHvlFXO-YXvlXRazl6-_Tb_teRiIL7MSSYYxTctlpyVw4Rqvvev_A1AST5z8I8eLRA240"/>
+                        <div class="relative z-10">
+                            <h4 class="font-bold text-sm leading-tight mb-4">Crime Organizado na Amazônia Paraense</h4>
+                            <button class="bg-white text-primary px-4 py-2 text-[10px] font-bold uppercase rounded group-hover:bg-secondary-container transition-all">SAIBA MAIS</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pub 2 -->
+                <div class="bg-white/10 p-1 group hover:bg-white/20 transition-all rounded" style="transition-delay: 100ms">
+                    <div class="bg-white/5 aspect-[3/4] p-8 flex flex-col justify-end relative overflow-hidden">
+                        <img alt="Capa" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD9xl1Z7JHWQEMT27PvmxotWown5mB1DYxO3LoHA-3MrXpa1U1uz-BGRmmh-XCJMd7RnW5tbKa7X2IFpMeQQFcDxEci9Eo2E88geTmZqB4h2lDEb1T3dyYhFPbMi0aWYMus2WU8nifRMmf5W6KCvMofEyv6eSX1YSJwQYYk0phb7tV0xOra9E0D3XfNOWgxW53cAQj9XA6ySBCOamX2AbFTQrQWJcaiKTvad2e3ReDP9Ps6bV-zGRIhtW3rBWU_ExE0LHCny82R9xl"/>
+                        <div class="relative z-10">
+                            <h4 class="font-bold text-sm leading-tight mb-4">Cartografias da Violência na Amazônia</h4>
+                            <button class="bg-white text-primary px-4 py-2 text-[10px] font-bold uppercase rounded group-hover:bg-secondary-container transition-all">SAIBA MAIS</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pub 3 -->
+                <div class="bg-white/10 p-1 group hover:bg-white/20 transition-all rounded" style="transition-delay: 200ms">
+                    <div class="bg-white/5 aspect-[3/4] p-8 flex flex-col justify-end relative overflow-hidden">
+                        <img alt="Capa" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2EFW93lly4OQcihoJSqxsEampfsaBX07h1gWfdD2dt9ViFKs1inL0MZFaH3uNaIev2kpzOK9s39ZQy4bdR6rIPmp64xopBrewd-f9O8CsSPnq8tSmgDkHl6Jdm5uTwc0WurQASAtVHaEvDEwPi0ATJBBdGy-Uj8kBmgdvNQCVn_5v_jc7tPSgK6go8ngrvWEw-IOQpuLGck_YFtaby55Og7SDISLXTDAAOuiaGJJpio8zG2D2BOT5ZQMj2-pik4UWSU6I3OVtywex"/>
+                        <div class="relative z-10">
+                            <h4 class="font-bold text-sm leading-tight mb-4">Muros que revelam um padrão</h4>
+                            <button class="bg-white text-primary px-4 py-2 text-[10px] font-bold uppercase rounded group-hover:bg-secondary-container transition-all">SAIBA MAIS</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pub 4 -->
+                <div class="bg-white/10 p-1 group hover:bg-white/20 transition-all rounded" style="transition-delay: 300ms">
+                    <div class="bg-white/5 aspect-[3/4] p-8 flex flex-col justify-end relative overflow-hidden">
+                        <img alt="Capa" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwLqTU9LDNAtqh5aZ7RySS-CWlIjwWV1J-NLqhdFRIDSsLiZ-8k4dOWylTUgcze6oY5VtUXEH2vzBJwOB18ULvTCHzB-bhGlaz1vx6UvOQDRKZna3XgM6RzJr1DJP5Lh9NY2cQLtj4-ghrWzPko3qdLGvrkUoM7J4uA6wF_qeOv6yIVnGPgLSVGgXbeXK4AdfuvAWRBycuCZXAyPQ6vOy8MMgybEXeClPVr4An7EX9EJBw-Crv0thTmfjxRi6c7rj0_uMA200pywyV"/>
+                        <div class="relative z-10">
+                            <h4 class="font-bold text-sm leading-tight mb-4">A nova corrida do ouro na Amazônia</h4>
+                            <button class="bg-white text-primary px-4 py-2 text-[10px] font-bold uppercase rounded group-hover:bg-secondary-container transition-all">SAIBA MAIS</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-    </div>
-</section>
-
-
-
-<!-- ===== SEÇÃO CONTATO ===== -->
-
-<section class="contact" id="contato">
-    <h2 class="heading">Contate-<span>Me!</span></h2>
-
-    <form action="https://formsubmit.co/jrcolares2012@gmail.com" method="POST">
-
-        <input type="hidden" name="_subject" value="Nova mensagem do portfólio">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-
-        <div class="input-box">
-            <input class="reveal-left" type="text" name="nome" placeholder="Nome Completo" required>
-            <input class="reveal-right" type="email" name="email" placeholder="Endereço de email" required>
+    <!-- 7. Image Gallery -->
+    <section class="py-32 bg-white">
+        <div class="max-w-container-max mx-auto px-margin-desktop">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-headline text-3xl text-primary mb-4">Galeria de Imagens</h2>
+                <p class="text-on-surface-variant text-sm">Imagens que registram momentos de encontros, ações e atividades desenvolvidas pelo Instituto.</p>
+            </div>
+            <div class="masonry-grid reveal">
+                <img class="w-full h-48 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZfTnKe-Bn8S_5oDJ1Ex7CLHRpxYvLidm4WKuxMFcQCPbxXybK5OqmUDWLmPcXhF90BjMdj7DoqBJcPklgFJBAcZN7AtDKq4FK-Oe4lc0w_PRvUy7E0ERO-e-Km_U5b045EN-Nm4LrqT8PF0fzc_Y8j4SZwOL2dfD8HXo24PEIE--Y1ByHx85dvy2ZgjCv7gKz5phlHA3n3Ze9yX7FqZsZHX7nvKK_QR7vdh4xw-r6RYoz40eR_kZWTVu6p7OCWrxUXcLaZRo0o_eA"/>
+                <img class="w-full h-48 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1oIf-qcoyfbikwyz9AlRt6YxM9jpXYhoxeXVYahNOx51IBHNTKh-CS1z63rNsVvWeDN0k9ob4TxHEcPSQAY9w23HgyJiVAEcU4wzXjcSwiAMEyLgbSJ6eH-sPS-F9QSL8yj_drnT1UcV_EAsfRAhAplBliG5M7XLj6-mc2SzYIfsKcD7yrsVkb6gFVfsDw4ISgLYz89lCayXpEJuHyLukZe5xWtsuUqM25eHvBwKfI2qc3EH7DMSEd0k_RcKhIUPrAsj1ADNCiyCH"/>
+                <img class="w-full h-48 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCFY42pXNVG58ilD77Gd1PLy-Apznprmhm7Qy5BLsptaGgi4xLI5l9lyN-xSliGIWKq2HrIAJsXd-FUGktGxFzzqL5LdaE62FsQADroeQB_z2deV4fmou7yVZ7lEi-xTpolWMier02ZmcVP2te-Nw_8g0HHF_CnnyskAuiKRpPOOwHbp0INcfAjuXdAmuVg1L1z10LarjKHdziHIue_s9ukMyn2qCkE99dfyCoeQhTDn3RGMhytcvkdjEDXOyBV4p-WJBfun8sTpym"/>
+                <img class="w-full h-48 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8_povuMZy0loyk5ZVzbAw4M1Ng3oTq5g4TqJa5b-VRvDv93DKVd7AV_-FzO1bQkve89TWjpbAYoHWzwN8A7XVRYpQsT2CfkbhM16aHApM-c-Jp5wA8PQ3vgq94XvNs0t8xYOJMo8SHIKi9_TZOCcJtOUftVqSUX0_FVaiXfbSL4QmPNJwHBPLFk0--R030_MEd1YeeG9RS9DsXIxaa7QwBLLKwhZQgf-Obuum51bfotPPR8LNVSwqXIL0xExkazFFcEKtRHbOaEp1"/>
+                <img class="w-full h-48 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQduTviF1lWdnRjOGZsT0JR9nFTNR76OsrWIB_CeMja5Q1rRjhFZFCRM2a7WSsxZWy-GYCJyCzLfV1ki9GaSAEK55Gd0_0RuhXMt-piWFTi3rYijl4rgba7DSm4M-XJeXAMibOrK7EoCQdo40Stj9Df2f_v1W_65hZeO5qOP3NfIXjO-bRyREgFrgxGlzsab4pD61ZvtNJFYhmCanhsT2oohEIPx8aOi7ej4z1o35LQf-raj-GL1F9VuJf5JkNMZZuq4M-Hx2V2zID"/>
+                <img class="w-full h-48 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAVQU-dG8-3iy0NSDlL8ZjhI_M36RPkyq7SquwmQ6y3_NREQiUIHJ1gZV7Se_QywC93ypHC6dKAE3TjZLC-QcJVsnq9Xy35y9ypG-Nwz-d8sswASqiYzNpmoBwSvItqDfLbrIX9ZMU5PhfMva1FWkPxi4j2ZLVyO0M_HOxrRTSvD8SETqMVcptgW5Cd03AYCFZBYvlf2BTZ4unplZOmRSstgyX9JlVztkhYRDlAoSkRlY1-hANHxo6pzJZ5gZPlZwRXu4ga5eOc7br"/>
+                <img class="w-full h-48 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_JQHVjf4l_-auW3I3ProxESVgnzFzQzFFxaNBbd7LJKpP2-DhELwT02kCwaiypoRh8rf-sAgvB2-INCXxIWxo0aP7pml4sgYHkAKZS8E6dW5M0qBat1n_9_charvKvzuuGtTwGLLQSbHdmEafntLX-XgH8W8bTEf41sfsmsaSB3cDSAHV27R8dxSJTnax6kPB0IDgcUxPYNj9atqs2vqT_P0TIRXIjioinHHwodra3NAptiIbcn_kbkynhhyGGANiYrmAhkQrqQwf"/>
+                <img class="w-full h-48 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2gnVSaHqpX9ic5Cphe6dBzlLTbnym58XdE0fgThHN6gdusOIyjx1Jhl9aaW6akN0LKKIf75ckYrx3zI8OtEnNt2GF0As4afKbFv5T_hpxnW1pS74Pl8w5wCCISmBwRsUHRLzrJIrQjQa1oP7DeN2zlIUo-HPrOIu37VJCmRb6y3FY-lb1co3GYu-7Yxx9Uxceg7rD9v4oOtPk2hJNvkBHC0haZr6wvdR5Wt41ohcVjKZmL088Gz91dMc9qx-9HJhZWrmQFnvda0Lu"/>
+            </div>
+            <div class="text-center mt-12 reveal">
+                <button class="bg-secondary text-white px-8 py-3 text-xs font-bold uppercase tracking-widest rounded hover:bg-primary transition-all">VER GALERIA COMPLETA</button>
+            </div>
         </div>
+    </section>
 
-        <div class="input-box">
-            <input class="reveal-left" type="text" name="telefone" placeholder="Número de telefone" required>
-            <input class="reveal-right" type="text" name="assunto" placeholder="Assunto do email" required>
+    <!-- 8. Partners & Financials -->
+    <section class="py-24 bg-surface-container-low border-t border-outline-variant">
+        <div class="max-w-container-max mx-auto px-margin-desktop">
+            <div class="mb-20 reveal">
+                <h3 class="text-center text-xs font-bold text-primary uppercase tracking-[0.3em] mb-12">Nossos Parceiros</h3>
+                <div class="flex flex-wrap justify-center items-center gap-16 grayscale opacity-60 hover:opacity-100 transition-all">
+                    <img alt="Parceiro 1" class="h-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAbjDqKFA3Oc4fq26NakCqZ32FUC5NWX9MKurtC57cdMJI1bXGN0W1WGlS8sTc4757ye-oUVt9fajdkgziavMWvJNNFkSnm4ykF-3Bz3vRIJ-q7UMCK4fMB1rqZqY5CcDYcYLDT43ZCNVZRnCj4C1xBJN7rEdqlYdt1uoHGTIrGgGKvIFROMD3xibIl5cufsFSiITCLfM1y90EWAPiWedd7Tq6JqisQpbLDOyzNILzkWopDsLZBgxUIXkYZ3Ka6dWu33plwFesa1WG"/>
+                    <img alt="Parceiro 2" class="h-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL7NmI1m_ztT-4-9S5vYyQr3B6m6Zjw1QHe14DWP2PL8vRz-1xIWmoRkiODrJg98aiiO_pDXsfBOHPXLbhpdvkPytT33IBSsj_UeBM8weLIO8YQnvRSFDuBJXb-Vr4kn-NH_sBlONdvfIPTMtCTnvm3gIkNV41c_Ydbjk5DKKCFiTcXmbD2Q3k0XBE-omd1PPGJ_cKi96f9daOdwnAk8CLn_B3iUOT50-3OFr7mnsrSQ0VL9wk4P5yikAUKlCvEgTeaSS_Dc6RLwQL"/>
+                    <img alt="Parceiro 3" class="h-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxd4qncJ18SLS1BGuoAsMfXI2vUUfAhxDJum-YJTrjIMXo-PUnxdwMlsf_ejyZe0G2xqBxLgn-3Nwi2ODB0Ve5VYWoA-EXmdnTxB-z2MeCWvF-5WGN1ODtSdCDjVuVjjYhxZimSp3wlEptloYclkJ4SQ52a-pMTNRcqu2mNBSXTGb95u8t6OQO6BV1-GHcQUqTJvnEHpboWda6KttQcOgFhTd3002jFT1YjwtrHHnFQaGp2CW3JYkF4QQcsv6e4xVTWYb5NFzcwVRb"/>
+                </div>
+            </div>
+            <div class="reveal">
+                <h3 class="text-center text-xs font-bold text-primary uppercase tracking-[0.3em] mb-12">Nossos Financiadores</h3>
+                <div class="flex flex-wrap justify-center items-center gap-16 grayscale opacity-60 hover:opacity-100 transition-all">
+                    <img alt="OSF" class="h-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4FJ-obBlEn6e4prOk9WqUbxSJDm38rYMSX7eU0iEtNdjd7OrzErnd0SPo-TdvkzQoiqzZ70eAvsN2pYGQCzC8zJf22B2SpZvrf6_C11PdEZcPIrEW2bhTkGlb1Dj6LBtWAZxa75eMk7LTzyLqUBmNBhN3er4rT78WL4fvj0iAtjUeoMc00AdMjN67GhFzIyf8vEquz0HWw-WhpDJM_fH86LqR2wAK1jwZTdTkS2qfdod65LS_cTSSxe0BHrY2nk0YUSR-TSHxksk5"/>
+                    <img alt="Ford" class="h-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuMUocL4_3mcKBHRkq5SDuBSzxt7s-ZHSib_GFMcXjNUdgkMnrQY_xr7lUB3UaJVVJHv6R4spuB5pKOBF1RHmdDAoS4dM6m985FrVq8GPazvvuvfSoWmvhNJNtvw-f9NQrk-A7L3oRD1rnzmlbBWid0IkRf9Q9RreXFlWUknfWeVb9sX1GtGM2shEm_v8ZMDk5o_WApyIbPt9oglAhUeyioVRUHet38E7r8fg9BvRUwOJAHr0UL8o2pvFbaSYXfW4uK0qRMLgpHe2u"/>
+                    <img alt="Fundo Brasil" class="h-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvvJE5oTutmzBs5R4WnoeOaEh2DMttDFxrAbYLprP1Rt-gPz6yoAhfi_MH_KLQpPy-lWbWdjUgPkWBBexUiK2g6YKgiBklCcK60QRajJxk7QRI6_uihnDZZwv6Xe2baYL07mVPOTf7xVwfrGcLVVZ5VZZU2_42cRpfQVdKllaC-ps73qFdHsXEqD89Q_2wjgEgougnHEMpVLl8M8wO_B0zz_3G9fY-12SGZwRaXX8f6rownYnJ-XK5KqQai_6vVHUDyVcHz3PsAg5i"/>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <textarea class="reveal-up" name="mensagem" cols="30" rows="10" placeholder="Sua mensagem" required></textarea>
+    <!-- Footer -->
+    <footer class="theme-green-bg text-white py-20 border-t border-white/10">
+        <div class="max-w-container-max mx-auto px-margin-desktop">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="font-headline text-2xl font-bold mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined">nature_people</span>
+                        <span>Instituto Mãe Crioula</span>
+                    </div>
+                    <p class="text-sm text-white/70 leading-relaxed mb-6">
+                        Produzindo conhecimento em defense dos povos e comunidades da Amazônia.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="hover:text-secondary-container transition-all" href="#"><span class="material-symbols-outlined">facebook</span></a>
+                        <a class="hover:text-secondary-container transition-all" href="#"><span class="material-symbols-outlined">share</span></a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-xs font-bold uppercase mb-6 tracking-widest text-secondary-container">LINKS ÚTEIS</h5>
+                    <ul class="space-y-4 text-sm text-white/70">
+                        <li><a class="hover:text-white transition-colors" href="#">Sobre Nós</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Projetos</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Publicações</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Políticas de Privacidade</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-xs font-bold uppercase mb-6 tracking-widest text-secondary-container">ENCONTRE-NOS</h5>
+                    <ul class="space-y-4 text-sm text-white/70">
+                        <li class="flex gap-2"><span class="material-symbols-outlined text-sm">location_on</span> Av. Magalhães Barata 651 - Belém, PA</li>
+                        <li class="flex gap-2"><span class="material-symbols-outlined text-sm">phone</span> (91) 98474 2715</li>
+                        <li class="flex gap-2"><span class="material-symbols-outlined text-sm">mail</span> imc@institutomaecrioula.org</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-xs font-bold uppercase mb-6 tracking-widest text-secondary-container">NEWSLETTER</h5>
+                    <p class="text-sm text-white/70 mb-6">Fique por dentro de nossas ações e pesquisas.</p>
+                    <div class="flex bg-white/10 rounded overflow-hidden">
+                        <input class="bg-transparent border-none focus:ring-0 text-sm px-4 py-2 w-full" placeholder="Seu e-mail" type="email"/>
+                        <button class="bg-secondary-container text-primary px-4 py-2 font-bold text-xs uppercase">OK</button>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase font-bold text-white/40 tracking-widest">
+                <p>Copyright © 2024 Instituto Mãe Crioula. Todos os direitos reservados.</p>
+                <a class="flex items-center gap-1 hover:text-white transition-colors" href="#main-header">VOLTAR AO TOPO <span class="material-symbols-outlined text-xs">arrow_upward</span></a>
+            </div>
+        </div>
+    </footer>
 
-        <input type="submit" value="Enviar mensagem" class="botao reveal-bottom">
+    <!-- Scripts -->
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
 
-</form>
-</section>
-
-<!-------- rodapé -------->
-<footer class="footer">
-    <div class="footer-text">
-       <p>Feito com 🤖 por <span>RaiColares</span> | Copyright &copy; 2026</p> 
-    </div>
-
-    <div class="iconerodape">
-        <img src="./assets/imagens/logo _r.png" alt="logo rai">
-        <!-- <a href="#"><i class='bx bx-chevrons-up'></i></a> -->
-    </div>
-
-</footer>
-
-<script src="./js/script.js"></script>
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Initial check
+    </script>
 </body>
-
 </html>
